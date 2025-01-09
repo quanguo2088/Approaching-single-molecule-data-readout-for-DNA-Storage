@@ -152,7 +152,7 @@ This project is distributed under the MIT License, which allows for both commerc
 
 ## Note
 
-The encoding method used in this work is LDPC (22680, 7560). For further details on the parameters, please refer to the work by Chen et al., Encoder implementation with FPGA for non-binary LDPC codes.
+For detailed information on coding procedures, please refer to the work by Chen et al., Encoder implementation with FPGA for non-binary LDPC codes.
 
 ## References
 
