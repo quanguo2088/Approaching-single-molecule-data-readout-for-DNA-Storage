@@ -78,8 +78,6 @@ gcc -o recovery_poem recovery_poem.c
 
 ### 1. Get PN sequence and reads
 
-Command:
-
 ```bash
 ./run_get_pn_seq_and_reads.sh
 ```
@@ -98,8 +96,6 @@ Command:
 ---
 
 ### 2. PN sequence alignment & indel correction
-
-Command:
 
 ```bash
 ./run_alignment_and_correction.sh
@@ -120,8 +116,6 @@ Command:
 
 ### 3. LDPC decoding
 
-Command:
-
 ```bash
 ./run_decoding.sh
 ```
@@ -138,8 +132,6 @@ Command:
 ---
 
 ### 4.  Recovery of original file
-
-Command:
 
 ```bash
 ./run_recovery.sh
