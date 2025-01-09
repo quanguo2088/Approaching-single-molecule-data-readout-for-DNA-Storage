@@ -17,7 +17,6 @@ This is a repository that enables real-time data readout from plasmids for DNA s
   - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
   - [3. LDPC decoding](#3-ldpc-decoding)
   - [4.  Recovery of original file](#4--recovery-of-original-file)
-- [Visualization](#visualization)
 - [License](#license)
 - [Note](#note)
 - [References](#references)
