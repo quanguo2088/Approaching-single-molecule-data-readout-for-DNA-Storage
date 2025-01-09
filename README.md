@@ -128,7 +128,7 @@ gcc -o recovery_poem recovery_poem.c
 **Output files:**
 
 - **Information.txt**: Decoded information from the codeword.
-- **Check.txt**: Used to validate decoding results.
+- **Check.txt**: This file is used to verify the accuracy of decoding results.
 ---
 
 ### 4.  Recovery of original file
