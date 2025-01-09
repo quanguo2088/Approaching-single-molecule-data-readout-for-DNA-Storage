@@ -78,8 +78,6 @@ gcc -o recovery_poem recovery_poem.c
 
 ### 1. Get PN sequence and reads
 
-Command:
-
 ```bash
 ./run_get_pn_seq_and_reads.sh
 ```
@@ -99,8 +97,6 @@ Command:
 
 ### 2. PN sequence alignment & indel correction
 
-Command:
-
 ```bash
 ./run_alignment_and_correction.sh
 ```
@@ -115,12 +111,10 @@ Command:
 
 - **Minimap_align.sam**: Alignment of the PN sequence to the corrupted sequences.
 - **polished_codeword.txt**: The corrected codeword after alignment and indel correction.
-- **bit_error_befor_decoding.txt**: The bit error rate after indel correction. The first column represents the substitution error rates and the second column represents the erasure rates.
+- **bit_error_befor_decoding.txt**: This file contains four columns: error count, erasure count, error rate, and erasure rate, representing bit error characteristics after indel correction.
 ---
 
 ### 3. LDPC decoding
-
-Command:
 
 ```bash
 ./run_decoding.sh
@@ -134,12 +128,10 @@ Command:
 **Output files:**
 
 - **Information.txt**: Decoded information from the codeword.
-- **Check.txt**: Used to validate decoding results.
+- **Check.txt**: This file is used to verify the accuracy of decoding results.
 ---
 
 ### 4.  Recovery of original file
-
-Command:
 
 ```bash
 ./run_recovery.sh
@@ -160,7 +152,7 @@ This project is distributed under the MIT License, which allows for both commerc
 
 ## Note
 
-The encoding method used in this work is LDPC (22680, 7560). For further details on the parameters, please refer to the work by Chen et al., Encoder implementation with FPGA for non-binary LDPC codes.
+For detailed information on coding procedures, please refer to the work by Chen et al., Encoder implementation with FPGA for non-binary LDPC codes.
 
 ## References
 
