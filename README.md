@@ -53,7 +53,7 @@ The following tools and dependencies are required:
 | **`data`** | **data_position.txt**         | Specifies the start and end positions of the encoded DNA sequence within the plasmid DNA sequence. |
 | **`src`**  | **get_pn_seq.c**              | Maps a pseudo-noise (PN) sequence to a base sequence using the rule `{0 → A, 1 → T}`.                      |
 | **`src`** | **filter_by_length.c**        | Filters and retrieves high-quality plasmid sequencing reads.                                                   |
-| **`src`** | **get_reads.c**               | Maps corrupted pseudo-noise sequence to base sequence using the rule `{0 → A, 1 → T}`.                     |
+| **`src`** | **get_reads.c**               | Maps corrupted PN sequence to base sequence using the rule `{0 → A, 1 → T}`.                     |
 | **`src`** | **indel_correction.c**        | Identifies and corrects indel errors in raw reads.                                        |
 | **`src`** | **R13Decoder**                | Implements (22680, 7560) R=1/3 LDPC decoding.                                                                  |
 | **`src`** | **parse_decoding_result.c**   | Parses and processes decoding results.                                                                         |
