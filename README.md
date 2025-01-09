@@ -2,7 +2,7 @@
 
 This is a repository that enables real-time data readout from plasmids for DNA storage using nanopore sequencing.
 
-![tu1](pic/1.png)
+![tu1](/pic/1.png)
 
 ## Table of Contents
 
