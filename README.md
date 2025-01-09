@@ -111,7 +111,7 @@ gcc -o recovery_poem recovery_poem.c
 
 - **Minimap_align.sam**: Alignment of the PN sequence to the corrupted sequences.
 - **polished_codeword.txt**: The corrected codeword after alignment and indel correction.
-- **bit_error_befor_decoding.txt**: The bit error rate after indel correction. The first column represents the substitution error rates and the second column represents the erasure rates.
+- **bit_error_befor_decoding.txt**: This file contains four columns: error count, erasure count, error rate, and erasure rate, representing bit error characteristics after indel correction.
 ---
 
 ### 3. LDPC decoding
