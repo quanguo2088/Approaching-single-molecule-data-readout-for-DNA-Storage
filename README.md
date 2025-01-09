@@ -155,12 +155,6 @@ Command:
 - **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains eight Chinese poems.
 ---
 
-## Visualization
-
-The project provides both source data and scripts for data visualization to help analyze the readout results and data integrity. All code for data visualization is written in Python and can be executed on any Python environment with necessary libraries installed.
-
-These scripts will generate plots of the data readout and recovery process, allowing for a deeper analysis of performance and accuracy.
-
 ## License
 
 This project is distributed under the MIT License, which allows for both commercial and private use, modification, and distribution. See the LICENSE file in the repository for more detailed information.
