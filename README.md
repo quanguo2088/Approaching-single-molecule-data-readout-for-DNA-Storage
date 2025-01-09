@@ -46,7 +46,7 @@ The following tools and dependencies are required:
 | Storage location   | **Files**                     | **Description**                                                                                          |
 | ------------------ | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **`data`** | **example.fastq**             | Contains sample data with 5,631 sequencing reads. The file is in .zip format and needs to be extracted.                                                        |
-| **`data`** | **poems.txt**                 | Original data with eight Chinese poems (945 bytes).                                                            |
+| **`data`** | **poems.txt**                 | Original data with 7 Chinese poems (945 bytes).                                                            |
 | **`data`** | **original_codeword.txt**     | Codeword sequence of 22,680 bits encoded from `poems.txt` using LDPC (22680, 7560) code.                 |
 | **`data`** | **pseudo_noise_sequence.txt** | Pseudo-noise (PN) sequence used to to locate reads and correct indels.                                        |
 | **`data`** | **plasmid_sequence.txt**      | DNA sequence of a plasmid with a total length of 33,558 base pairs.                                       |
@@ -143,7 +143,7 @@ gcc -o recovery_poem recovery_poem.c
 
 **Output files:**
 
-- **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains eight Chinese poems.
+- **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains 7 Chinese poems.
 ---
 
 ## License
