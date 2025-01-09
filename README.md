@@ -47,19 +47,19 @@ The following tools and dependencies are required:
 | Storage location   | **Files**                     | **Description**                                                                                          |
 | ------------------ | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **`data`** | **example.fastq**             | Contains sample data, including 5,631 sequencing reads.                                                        |
-|                    | **poems.txt**                 | Original data with eight Chinese poems (945 bytes).                                                            |
-|                    | **original_codeword.txt**     | Codeword sequence of 22,680 bits encoded from `poems.txt` using LDPC (22680, 7560) encoding.                 |
-|                    | **pseudo_noise_sequence.txt** | Pseudo-noise (PN) sequence used to to locate reads and correct indels.                                        |
-|                    | **plasmid_sequence.txt**      | DNA sequence of a plasmid with a total length of 33,558 base pairs (bp).                                       |
-|                    | **data_position.txt**         | Specifies the start and end positions of the encoded DNA sequence within the plasmid DNA sequence (22,680 bp). |
+| **`data`** | **poems.txt**                 | Original data with eight Chinese poems (945 bytes).                                                            |
+| **`data`** | **original_codeword.txt**     | Codeword sequence of 22,680 bits encoded from `poems.txt` using LDPC (22680, 7560) encoding.                 |
+| **`data`** | **pseudo_noise_sequence.txt** | Pseudo-noise (PN) sequence used to to locate reads and correct indels.                                        |
+| **`data`** | **plasmid_sequence.txt**      | DNA sequence of a plasmid with a total length of 33,558 base pairs (bp).                                       |
+| **`data`** | **data_position.txt**         | Specifies the start and end positions of the encoded DNA sequence within the plasmid DNA sequence (22,680 bp). |
 | **`src`**  | **get_pn_seq.c**              | Maps a pseudo-noise (PN) sequence to a base sequence using the rule `{0 → A, 1 → T}`.                      |
-|                    | **filter_by_length.c**        | Filters and retrieves high-quality plasmid sequencing reads.                                                   |
-|                    | **get_reads.c**               | Maps corrupted pseudo-noise sequence to base sequence using the rule `{0 → A, 1 → T}`.                     |
-|                    | **indel_correction.c**        | Identifies and corrects indel errors in reads based on the PN sequence.                                        |
-|                    | **R13Decoder**                | Implements (22680, 7560) R=1/3 LDPC decoding.                                                                  |
-|                    | **parse_decoding_result.c**   | Parses and processes decoding results.                                                                         |
-|                    | **recovery_poem.c**         | Recovers the original text file from the decoding result.                                                      |
-|                    | **merge_codeword.c**      | Bit-wise majority voting.                                                     |
+| **`src`** | **filter_by_length.c**        | Filters and retrieves high-quality plasmid sequencing reads.                                                   |
+| **`src`** | **get_reads.c**               | Maps corrupted pseudo-noise sequence to base sequence using the rule `{0 → A, 1 → T}`.                     |
+| **`src`** | **indel_correction.c**        | Identifies and corrects indel errors in reads based on the PN sequence.                                        |
+| **`src`** | **R13Decoder**                | Implements (22680, 7560) R=1/3 LDPC decoding.                                                                  |
+| **`src`** | **parse_decoding_result.c**   | Parses and processes decoding results.                                                                         |
+| **`src`** | **recovery_poem.c**         | Recovers the original text file from the decoding result.                                                      |
+| **`src`** | **merge_codeword.c**      | Bit-wise majority voting.                                                     |
 
 ## Compilation
 
