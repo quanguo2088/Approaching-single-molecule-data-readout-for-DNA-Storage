@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-- [Approaching single-molecule assembly-free data readout for DNA Storage](#approaching-single-molecule-assembly-free-data-readout-for-dna-storage)
+- [Approaching single-molecule data readout for DNA Storage](#approaching-single-molecule-data-readout-for-dna-storage)
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Requirements](#requirements)
