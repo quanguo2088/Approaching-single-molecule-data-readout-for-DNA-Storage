@@ -1,4 +1,4 @@
-## Approaching single-molecule assembly-free data readout for DNA Storage
+## Approaching single-molecule data readout for DNA Storage
 
 ![tu1](pic/1.png)
 
