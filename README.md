@@ -1,12 +1,10 @@
-## Real-Time Data Readout for DNA Storage
+## Approaching single-molecule assembly-free data readout for DNA Storage
 
-This is a repository that enables real-time data readout from plasmids for DNA storage using nanopore sequencing.
-
-![tu1](/pic/1.png)
+![tu1](pic/1.png)
 
 ## Table of Contents
 
-- [Real-Time Data Readout for DNA Storage](#real-time-data-readout-for-dna-storage)
+- [Approaching single-molecule assembly-free data readout for DNA Storage](#approaching-single-molecule-assembly-free-data-readout-for-dna-storage)
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
 - [Requirements](#requirements)
