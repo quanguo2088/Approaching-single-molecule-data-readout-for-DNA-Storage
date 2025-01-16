@@ -36,7 +36,7 @@ In our work, to demonstrate the feasibility of the proposed method, we construct
 
 The following tools and dependencies are required:
 
-- **C/C++ Compilers**: Ensure `gcc` (for C) are installed.
+- **C Compilers**: Ensure `gcc` (for C) are installed.
 - **Minimap2**: The Minimap2 binary should be available and executable for sequence alignment.
 
 ## Files
