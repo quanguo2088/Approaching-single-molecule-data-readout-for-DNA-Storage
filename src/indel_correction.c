@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/stat.h>
-#include "edlib.h"
 
 #define MAXLEN 300000
 
