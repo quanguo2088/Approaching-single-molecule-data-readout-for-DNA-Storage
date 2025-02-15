@@ -16,8 +16,6 @@
   - [3. LDPC decoding](#3-ldpc-decoding)
   - [4.  Recovery of original file](#4--recovery-of-original-file)
 - [License](#license)
-- [Note](#note)
-- [References](#references)
 
 ## Overview
 
@@ -151,12 +149,3 @@ gcc -o recovery_poem recovery_poem.c
 ## License
 
 This project is distributed under the MIT License, which allows for both commercial and private use, modification, and distribution. See the LICENSE file in the repository for more detailed information.
-
-## Note
-
-For detailed information on coding procedures, please refer to the work by Chen et al., Encoder implementation with FPGA for non-binary LDPC codes.
-
-## References
-
-1. [Encoder implementation with FPGA for non-binary LDPC codes.](https://ieeexplore.ieee.org/document/6388230)
-2. [A trivalent graph of girth 17.](https://www.semanticscholar.org/paper/A-trivalent-graph-of-girth-17-Exoo/36956336e1f5b2a4f0e8553c9f04645c55afd9ab)
