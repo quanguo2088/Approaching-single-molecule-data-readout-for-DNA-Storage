@@ -17,7 +17,6 @@
     - [4.  Recovery of original file](#4--recovery-of-original-file)
   - [License](#license)
 
----
 
 ## Overview
 
@@ -32,7 +31,6 @@ Here we provide the code for rapid readout and reliable data recovery in nearly 
 
 In our work, to demonstrate the feasibility of the proposed method, we constructed four plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained through efficient library preparation and nanopore sequencing.
 
----
 
 ## Requirements
 
@@ -50,7 +48,6 @@ The following tools and dependencies are required:
 - **C Compiler**: Ensure `gcc` is installed.
 - **Minimap2**: The Minimap2 binary should be available.
 
----
 
 ## Overview of Repository Files
 
@@ -85,7 +82,6 @@ gcc -o parse_decoding_result parse_decoding_result.c -lm
 gcc -o recovery_poem recovery_poem.c
 ```
 
----
 
 ## Example of usage
 
@@ -107,7 +103,6 @@ gcc -o recovery_poem recovery_poem.c
 - **High_quality.fastq**: Retrieved high-quality plasmid nanopore reads.
 - **Corrupted_PN_sequence.fastq**: Corrupted PN sequences derived from the nanopore reads.
 
----
 
 ### 2. PN sequence alignment & indel correction
 
@@ -127,7 +122,6 @@ gcc -o recovery_poem recovery_poem.c
 - **polished_codeword.txt**: The corrected codeword after alignment and indel correction.
 - **bit_error_befor_decoding.txt**: This file contains four columns: error count, erasure count, error rate, and erasure rate, representing bit error characteristics after indel correction.
 
----
 
 ### 3. LDPC decoding
 
@@ -145,7 +139,6 @@ gcc -o recovery_poem recovery_poem.c
 - **Information.txt**: Decoded information from the codeword.
 - **Check.txt**: This file is used to verify the accuracy of decoding results.
 
----
 
 ### 4.  Recovery of original file
 
@@ -161,7 +154,6 @@ gcc -o recovery_poem recovery_poem.c
 
 - **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains 7 Chinese poems.
 
----
 
 ## License
 
