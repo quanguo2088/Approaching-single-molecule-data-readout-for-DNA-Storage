@@ -1,21 +1,21 @@
-## Approaching single-molecule data readout for DNA Storage
+# Approaching single-molecule data readout for DNA storage
 
 ![tu1](pic/1.png)
 
 ## Table of Contents
 
-- [Approaching single-molecule data readout for DNA Storage](#approaching-single-molecule-data-readout-for-dna-storage)
-- [Table of Contents](#table-of-contents)
-- [Overview](#overview)
-- [Requirements](#requirements)
-- [Files](#files)
-- [Compilation](#compilation)
-- [Example of usage](#example-of-usage)
-  - [1. Get PN sequence and reads](#1-get-pn-sequence-and-reads)
-  - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
-  - [3. LDPC decoding](#3-ldpc-decoding)
-  - [4.  Recovery of original file](#4--recovery-of-original-file)
-- [License](#license)
+- [Approaching single-molecule data readout for DNA storage](#approaching-single-molecule-data-readout-for-dna-storage)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Requirements](#requirements)
+  - [Overview of Repository Files](#overview-of-repository-files)
+  - [Compilation](#compilation)
+  - [Example of usage](#example-of-usage)
+    - [1. Get PN sequence and reads](#1-get-pn-sequence-and-reads)
+    - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
+    - [3. LDPC decoding](#3-ldpc-decoding)
+    - [4.  Recovery of original file](#4--recovery-of-original-file)
+  - [License](#license)
 
 ## Overview
 
@@ -32,12 +32,21 @@ In our work, to demonstrate the feasibility of the proposed method, we construct
 
 ## Requirements
 
+**OS Requirements**
+
+The program has been tested on the following operating systems:
+
+- **Ubuntu 20.04.6 LTS**
+- **Ubuntu 18.04.6 LTS**
+
+**Software Requirements**
+
 The following tools and dependencies are required:
 
 - **C Compiler**: Ensure `gcc` is installed.
-- **Minimap2**: The Minimap2 binary should be available and executable for sequence alignment.
+- **Minimap2**: The Minimap2 binary should be available.
 
-## Files
+## Overview of Repository Files
 
 | Storage location   | **Files**                     | **Description**                                                                                   |
 | ------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -69,6 +78,8 @@ gcc -o MergeCodeword merge_codeword.c
 gcc -o parse_decoding_result parse_decoding_result.c -lm
 gcc -o recovery_poem recovery_poem.c
 ```
+
+---
 
 ## Example of usage
 
