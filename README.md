@@ -85,6 +85,9 @@ gcc -o recovery_poem recovery_poem.c
 
 ## Example of usage
 
+- The **run_pipeline.sh** script integrates four steps and achieves data recovery using a single read, with a total execution time of approximately 3 seconds.
+- The **run_indep_exp.sh** script can perform recovery tests under different sequencing coverages.
+  
 ### 1. Get PN sequence and reads
 
 ```bash

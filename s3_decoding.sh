@@ -10,7 +10,7 @@ readCoverage=1
 readNumber=1  # [0-1609]
 
 polished_cw="../results/polished_codeword.txt"
-consensus_cw="../results/$readCoverage/consensus_codeword.txt"
+consensus_cw="../results/${readCoverage}x/consensus_codeword.txt"
 
 cd ./src
 

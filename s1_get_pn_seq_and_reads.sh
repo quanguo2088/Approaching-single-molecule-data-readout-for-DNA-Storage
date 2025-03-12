@@ -18,7 +18,11 @@ if [ -d "./results/" ]; then
 fi
 
 # Now create the necessary directories
-mkdir -p "./results/$readCoverage"
+mkdir -p "./results/${readCoverage}x"
+
+
+# unzip data/Example_reads.zip -d data
+
 
 cd ./src
 
