@@ -17,6 +17,8 @@
     - [4.  Recovery of original file](#4--recovery-of-original-file)
   - [License](#license)
 
+---
+
 ## Overview
 
 Synthetic DNA is a promising medium for long-term data storage. Nanopore sequencing can facilitate rapid readout of large DNA fragments, though suffering from the severe and notorious insertion/deletion errors. We present a highly reliable storage scheme with medium-length encoded DNA fragments (a few to tens of kilobases) and fast recovery schemes using low coverage nanopore sequencing. Using the readout-aware pseudo-noise sequences, the nanopore reads with arbitrary start points are directly located and the base insertions/deletions are identified, enabling fast and reliable recovery even at very low coverages.
@@ -29,6 +31,8 @@ Here we provide the code for rapid readout and reliable data recovery in nearly 
 4. **Recovery of Original File**: Reconstruct the original data from the decoded bitstream.
 
 In our work, to demonstrate the feasibility of the proposed method, we constructed four plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained through efficient library preparation and nanopore sequencing.
+
+---
 
 ## Requirements
 
@@ -45,6 +49,8 @@ The following tools and dependencies are required:
 
 - **C Compiler**: Ensure `gcc` is installed.
 - **Minimap2**: The Minimap2 binary should be available.
+
+---
 
 ## Overview of Repository Files
 
