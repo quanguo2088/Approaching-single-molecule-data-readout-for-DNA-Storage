@@ -26,7 +26,7 @@ Here we provide the code for rapid readout and reliable data recovery in nearly 
 
 1. **Get PN Sequence and Reads**: Extract corrupted PN sequences from nanopore sequencing reads.
 2. **PN Sequence Alignment & Indel Correction**: Align the corrupted PN sequence to ideal PN sequence and perform insertion-deletion (indel) correction.
-3. **LDPC Decoding**: Apply Low-Density Parity-Check (LDPC) decoding.
+3. **LDPC Decoding**: Apply non-binary Low-Density Parity-Check (LDPC) decoding. For a detailed explanation of the coding procedures, refer to the literature "Encoder Implementation with FPGA for non-binary LDPC Codes"
 4. **Recovery of Original File**: Reconstruct the original data from the decoded bitstream.
 
 In our work, to demonstrate the feasibility of the proposed method, we constructed four plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained through efficient library preparation and nanopore sequencing.
@@ -53,9 +53,9 @@ The following tools and dependencies are required:
 
 | Storage location   | **Files**                     | **Description**                                                                                   |
 | ------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **`data`** | **example.fastq**             | Contains sample data with 5,631 sequencing reads. The file is in .zip format and needs to be extracted. |
+| **`data`** | **pLP2.fastq**             | Contains sample data with 5,631 sequencing reads. The file is in .zip format and needs to be extracted. |
 | **`data`** | **poems.txt**                 | Original data with 7 Chinese poems (945 bytes).                                                         |
-| **`data`** | **original_codeword.txt**     | Codeword sequence of 22,680 bits encoded from `poems.txt` using LDPC (22680, 7560) code.              |
+| **`data`** | **original_codeword.txt**     | Codeword sequence of 22,680 bits encoded from `poems.txt` using non-binary LDPC (22680, 7560) code.              |
 | **`data`** | **pseudo_noise_sequence.txt** | Pseudo-noise (PN) sequence used to to locate reads and correct indels.                                 |
 | **`data`** | **plasmid_sequence.txt**      | DNA sequence of a plasmid with a total length of 33,558 base pairs.                                     |
 | **`data`** | **data_position.txt**         | Specifies the start and end positions of the encoded DNA sequence within the plasmid DNA sequence.      |
@@ -63,7 +63,7 @@ The following tools and dependencies are required:
 | **`src`**  | **filter_by_length.c**        | Filters and retrieves high-quality plasmid sequencing reads.                                            |
 | **`src`**  | **get_reads.c**               | Maps corrupted PN sequence to base sequence using the rule `{0 → A, 1 → T}`.                        |
 | **`src`**  | **indel_correction.c**        | Identifies and corrects indel errors in raw reads.                                                      |
-| **`src`**  | **R13Decoder**                | Implements (22680, 7560) R=1/3 LDPC decoding.                                                           |
+| **`src`**  | **R13Decoder**                | Implements (22680, 7560) R=1/3 non-binary LDPC decoding.                                                           |
 | **`src`**  | **parse_decoding_result.c**   | Parses and processes decoding results.                                                                  |
 | **`src`**  | **recovery_poem.c**           | Recovers the original text file from the decoding result.                                               |
 | **`src`**  | **merge_codeword.c**          | Bit-wise majority voting.                                                                               |
@@ -97,7 +97,7 @@ gcc -o recovery_poem recovery_poem.c
 **Input files:**
 
 - **Plasmid_sequence.txt**: DNA sequence of a plasmid with a total length of 33,558 base pairs (bp).
-- **Example.fastq**: Nanopore reads obtained from efficient library preparation.
+- **pLP2.fastq**: Nanopore reads obtained from efficient library preparation.
 
 **Output files:**
 
