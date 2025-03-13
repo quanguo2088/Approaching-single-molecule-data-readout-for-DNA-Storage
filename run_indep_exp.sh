@@ -3,7 +3,7 @@
 ./s0_compile.sh
 
 # Set variables for file paths and parameters
-fqfile="../data/Example.fastq"
+fqfile="../data/pLP2.fastq"
 reffile="../data/Plasmid_sequence.txt"
 orig_cw="../data/original_codeword.txt"
 
@@ -18,6 +18,13 @@ consensus_cw="../results/consensus_codeword.txt"
 error_file="../results/bit_error_befor_decoding.txt"
 check_file="../results/Check.txt"
 decoding_res="../results/information.txt"
+
+# First-time setup: Extract the example sequencing reads from the ZIP archive
+if [ ! -f "data/pLP2.fastq" ]; then
+    unzip data/pLP2.zip -d data/
+else
+    echo "File data/pLP2.fastq already exists. Skipping extraction."
+fi
 
 # Ensure required directories are clean and created
 if [ -d "./results/" ]; then
