@@ -46,7 +46,7 @@ The program has been tested on the following operating systems:
 The following tools and dependencies are required:
 
 - **C Compiler**: Ensure `gcc` is installed.
-- **Minimap2**: The Minimap2 binary should be available.
+- **Minimap2**: The Minimap2 binary should be available.  You can download it from the official repository: [https://github.com/lh3/minimap2](https://github.com/lh3/minimap2).
 
 
 ## Overview of Repository Files
