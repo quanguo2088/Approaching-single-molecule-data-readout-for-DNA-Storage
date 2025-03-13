@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # First-time setup: Extract the example sequencing reads from the ZIP archive
-# unzip data/Example_reads.zip -d data
+# unzip data/pLP2.zip -d data
 
 echo "Process Started:" `date`
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"

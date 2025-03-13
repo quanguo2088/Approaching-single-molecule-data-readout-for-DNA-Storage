@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set variables for file paths and parameters
-fqfile="../data/Example.fastq"
+fqfile="../data/pLP2.fastq"
 reffile="../data/Plasmid_sequence.txt"
 
 pn_seq="../data/PN_sequence.fa"
