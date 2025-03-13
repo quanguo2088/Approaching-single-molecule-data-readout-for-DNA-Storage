@@ -28,7 +28,7 @@ Here we provide the code for rapid readout and reliable data recovery in nearly 
 3. **LDPC Decoding**: Apply non-binary Low-Density Parity-Check (LDPC) decoding. For a detailed explanation of the coding procedures, refer to the literature "Encoder Implementation with FPGA for non-binary LDPC Codes," In 2012 18th Asia-Pacific Conference on Communications (APCC), DOI: [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230).
 4. **Recovery of Original File**: Reconstruct the original data from the decoded bitstream.
 
-In our work, to demonstrate the feasibility of the proposed method, we constructed four plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained through efficient library preparation and nanopore sequencing.
+In our work, to demonstrate the feasibility of the proposed method, we constructed 4 plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained through efficient library preparation and nanopore sequencing.
 
 ## Requirements
 
