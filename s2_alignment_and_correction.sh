@@ -18,3 +18,4 @@ cd ./src
 # 2.2 Perform indel correction
 ./indel_correction "$pn_seq" "$align_sam" "$readNumber" "$readCoverage" "$filtered_fq"
 
+

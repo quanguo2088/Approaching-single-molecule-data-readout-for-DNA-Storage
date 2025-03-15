@@ -21,7 +21,12 @@ fi
 mkdir -p "./results/${readCoverage}x"
 
 
-# unzip data/Example_reads.zip -d data
+# First-time setup: Extract the example sequencing reads from the ZIP archive
+if [ ! -f "data/pLP2.fastq" ]; then
+    unzip data/pLP2.zip -d data/
+else
+    echo "File data/pLP2.fastq already exists. Skipping extraction."
+fi
 
 
 cd ./src
@@ -37,6 +42,7 @@ cd ./src
 
 # 1.4 Extract reads from the filtered FASTQ file
 ./get_reads "$readNumber" "$readCoverage" "$filtered_fq" "$corrupted_pn"
+
 
 
 
