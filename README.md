@@ -24,21 +24,19 @@
 
 Synthetic DNA is a promising medium for long-term data storage. Nanopore sequencing can facilitate rapid readout of large DNA fragments, though suffering from the severe and notorious insertion/deletion errors. We present a highly reliable storage scheme with medium-length encoded DNA fragments (a few to tens of kilobases) and fast recovery schemes using low coverage nanopore sequencing. Using the readout-aware pseudo-noise sequences, the nanopore reads with arbitrary start points are directly located and the base insertions/deletions are identified, enabling fast and reliable recovery even at very low coverages.
 
-Here we provide the code for the **PNC-LDPC coding scheme** and **data readout**.
+Here we provide the code for the PNC-LDPC coding scheme and data readout.
 
 **1. PNC-LDPC Coding Scheme**
-The PNC-LDPC module provides the following functions:
 
-- **Encoding** — Encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).
-- **Decoding** — Reconstruct the original data from soft-decision information.
+- Encoding — Encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).
+- Decoding — Reconstruct the original data from soft-decision information.
 
 **2. Data Readout**
-The data readout process consists of the following steps:
 
-- **Get PN Sequence and Reads** — Extract corrupted PN sequences from nanopore sequencing reads.
-- **PN Sequence Alignment & Indel Correction** — Align the corrupted PN sequence to the ideal PN sequence and perform insertion/deletion (indel) correction.
-- **LDPC Decoding** — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, see *Encoder Implementation with FPGA for Non-Binary LDPC Codes*, in *2012 18th Asia-Pacific Conference on Communications (APCC)*, DOI: [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230).
-- **Recovery of Original File** — Reconstruct the original data from the decoded bitstream.
+- Get PN Sequence and Reads — Extract corrupted PN sequences from nanopore sequencing reads.
+- PN Sequence Alignment & Indel Correction — Align the corrupted PN sequence to the ideal PN sequence and perform insertion/deletion (indel) correction.
+- LDPC Decoding — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, see *Encoder Implementation with FPGA for Non-Binary LDPC Codes*, in *2012 18th Asia-Pacific Conference on Communications (APCC)*, DOI: [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230).
+- Recovery of Original File — Reconstruct the original data from the decoded bitstream.
 
 To demonstrate the feasibility of the proposed method, we constructed 5 plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained via efficient library preparation and nanopore sequencing. All programs are developed in C and C++.
 
@@ -77,7 +75,7 @@ PNC-LDPC_encoding/
     ├── R093_decode.cpp              # LDPC decoding implementation (R=0.93)
     ├── R093_encode.cpp              # LDPC encoding implementation (R=0.93)
     └── recovery_sonnets.c           # Recover original sonnets from decoding result
-                                        
+                                  
 Data_recovery/
 ├── data/
 │   ├── original_codeword.txt       # 22,680-bit codeword encoded from poems.txt using non-binary LDPC (22680, 7560) code.
@@ -235,6 +233,7 @@ gcc -o recovery_poem recovery_poem.c
 **Output files:**
 
 - **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains 7 Chinese poems.
+
 ---
 
 ## License
