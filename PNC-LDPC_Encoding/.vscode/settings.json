@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "command": "bed",
+        "*.command": "shellscript",
+        "*.log": "Log",
+        "cstddef": "cpp",
+        "stdio.h": "c",
+        "cstdlib": "c",
+        "cmath": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "string_view": "cpp",
+        "random": "cpp",
+        "cstring": "cpp",
+        "cstdio": "cpp"
+    }
+}
