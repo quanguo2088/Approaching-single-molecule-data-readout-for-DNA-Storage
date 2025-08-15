@@ -32,8 +32,8 @@ The data readout process consists of the following steps:
 
 1. **Get PN Sequence and Reads** — Extract corrupted PN sequences from nanopore sequencing reads.  
 2. **PN Sequence Alignment & Indel Correction** — Align the corrupted PN sequence to the ideal PN sequence and perform insertion/deletion (indel) correction.  
-3. **LDPC Decoding** — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, , and 
-4. **Recovery of Original File** — Reconstruct the original data from the decoded bitstream.  
+3. **LDPC Decoding** — Apply non-binary LDPC decoding.
+4. **Recovery of Original File** — Reconstruct the original data from the decoded bitstream.
 
 In addition, we provide the encoding module.
 This program can encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).  
