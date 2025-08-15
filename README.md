@@ -11,13 +11,13 @@
   - [Overview of Repository Files](#overview-of-repository-files)
   - [Example of usage](#example-of-usage)
     - [1. PNC-LDPC coding scheme](#1-pnc-ldpc-coding-scheme)
-      - [Encoding](#encoding)
-      - [Decoding](#decoding)
+      - [1.1 Encoding](#11-encoding)
+      - [1.2 Decoding](#12-decoding)
     - [2. Data Readout](#2-data-readout)
-      - [1. Get PN sequence and reads](#1-get-pn-sequence-and-reads)
-      - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
-      - [3. LDPC decoding](#3-ldpc-decoding)
-      - [4.  Recovery of original file](#4--recovery-of-original-file)
+      - [2.1 Get PN sequence and reads](#21-get-pn-sequence-and-reads)
+      - [2.2 PN sequence alignment \& indel correction](#22-pn-sequence-alignment--indel-correction)
+      - [2.3 LDPC decoding](#23-ldpc-decoding)
+      - [2.4  Recovery of original file](#24--recovery-of-original-file)
   - [License](#license)
 
 ## Overview
@@ -77,7 +77,7 @@ PNC-LDPC_encoding/
     ├── R093_decode.cpp              # LDPC decoding implementation (R=0.93)
     ├── R093_encode.cpp              # LDPC encoding implementation (R=0.93)
     └── recovery_sonnets.c           # Recover original sonnets from decoding result
-                                            
+                                        
 Data_recovery/
 ├── data/
 │   ├── original_codeword.txt       # 22,680-bit codeword encoded from poems.txt using non-binary LDPC (22680, 7560) code.
@@ -111,7 +111,9 @@ g++ -o bin/R093_encode src/R093_encode.cpp -I configure/LDPC -L configure/lib -l
 g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -lldpc
 ```
 
-#### Encoding
+---
+
+#### 1.1 Encoding
 
 ```bash
 ./bin/R093_encode data/Shakespeare_sonnets.txt results/enc_base_seq_32000nt.txt
@@ -125,7 +127,9 @@ g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -l
 
 - **enc_base_seq_32000nt.txt**: encoded base sequence, 32000 nt.
 
-#### Decoding
+---
+
+#### 1.2 Decoding
 
 ```bash
 ./bin/R093_decode data/softinfo_prob.txt results/decode_output.txt
@@ -141,11 +145,11 @@ g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -l
 - **decode_output.txt**: decoded bitstream.
 - **recovered_shakespeare_sonnets.txt**: recovered Shakespeare's sonnets.
 
+---
+
 ### 2. Data Readout
 
 **Compilation**
-
-To compile the individual modules:
 
 ```bash
 cd Data_recovery/
@@ -158,10 +162,9 @@ gcc -o parse_decoding_result parse_decoding_result.c -lm
 gcc -o recovery_poem recovery_poem.c
 ```
 
-- The **run_pipeline.sh** script integrates four steps and achieves data recovery using a single read, with a total execution time of approximately 3 seconds.
-- The **run_indep_exp.sh** script can perform recovery tests under different sequencing coverages.
+---
 
-#### 1. Get PN sequence and reads
+#### 2.1 Get PN sequence and reads
 
 ```bash
 ./run_get_pn_seq_and_reads.sh
@@ -179,7 +182,9 @@ gcc -o recovery_poem recovery_poem.c
 - **High_quality.fastq**: Retrieved high-quality plasmid nanopore reads.
 - **Corrupted_PN_sequence.fastq**: Corrupted PN sequences derived from the nanopore reads.
 
-#### 2. PN sequence alignment & indel correction
+---
+
+#### 2.2 PN sequence alignment & indel correction
 
 ```bash
 ./run_alignment_and_correction.sh
@@ -197,7 +202,9 @@ gcc -o recovery_poem recovery_poem.c
 - **polished_codeword.txt**: The corrected codeword after alignment and indel correction.
 - **bit_error_befor_decoding.txt**: This file contains four columns: error count, erasure count, error rate, and erasure rate, representing bit error characteristics after indel correction.
 
-#### 3. LDPC decoding
+---
+
+#### 2.3 LDPC decoding
 
 ```bash
 ./run_decoding.sh
@@ -213,7 +220,9 @@ gcc -o recovery_poem recovery_poem.c
 - **Information.txt**: Decoded information from the codeword.
 - **Check.txt**: This file is used to verify the accuracy of decoding results.
 
-#### 4.  Recovery of original file
+---
+
+#### 2.4  Recovery of original file
 
 ```bash
 ./run_recovery.sh
@@ -226,6 +235,7 @@ gcc -o recovery_poem recovery_poem.c
 **Output files:**
 
 - **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains 7 Chinese poems.
+---
 
 ## License
 
