@@ -10,33 +10,40 @@
   - [Requirements](#requirements)
   - [Overview of Repository Files](#overview-of-repository-files)
   - [Example of usage](#example-of-usage)
-    - [1. PNC-LDPC coding scheme](#1-pnc-ldpc-coding-scheme)
-      - [1.1 Encoding](#11-encoding)
-      - [1.2 Decoding](#12-decoding)
-    - [2. Data Readout](#2-data-readout)
-      - [2.1 Get PN sequence and reads](#21-get-pn-sequence-and-reads)
-      - [2.2 PN sequence alignment \& indel correction](#22-pn-sequence-alignment--indel-correction)
-      - [2.3 LDPC decoding](#23-ldpc-decoding)
-      - [2.4  Recovery of original file](#24--recovery-of-original-file)
+    - [Data Readout of pLP5](#data-readout-of-plp5)
+      - [1. Get PN sequence and reads](#1-get-pn-sequence-and-reads)
+      - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
+      - [3. LDPC decoding](#3-ldpc-decoding)
+      - [4.  Recovery of original file](#4--recovery-of-original-file)
+    - [PNC-LDPC coding scheme](#pnc-ldpc-coding-scheme)
+      - [Encoding](#encoding)
+      - [Decoding](#decoding)
   - [License](#license)
 
 ## Overview
 
 Synthetic DNA is a promising medium for long-term data storage. Nanopore sequencing can facilitate rapid readout of large DNA fragments, though suffering from the severe and notorious insertion/deletion errors. We present a highly reliable storage scheme with medium-length encoded DNA fragments (a few to tens of kilobases) and fast recovery schemes using low coverage nanopore sequencing. Using the readout-aware pseudo-noise sequences, the nanopore reads with arbitrary start points are directly located and the base insertions/deletions are identified, enabling fast and reliable recovery even at very low coverages.
 
-Here we provide the code for the PNC-LDPC coding scheme and data readout.
+Here we provide the readout programs for five plasmids (**pLP1–pLP5**):  
 
-**1. PNC-LDPC Coding Scheme**
+- **pLP1** and **pLP2** — Non-binary LDPC code with rate **R = 1/3** 
+(coding procedures details in *Encoder Implementation with FPGA for Non-Binary LDPC Codes* [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230))
+- **pLP3** and **pLP4** — Non-binary LDPC code with rate **R = 1/2** 
+(coding procedures details in *Non-binary LDPC codes defined over the general linear group: Finite length design and practical implementation issues* [10.1109/VETECS.2009.5073713](https://doi.org/10.1109/VETECS.2009.5073713).)
+- **pLP5** — Binary LDPC code with rate **R = 0.93**  
 
-- Encoding — Encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).
-- Decoding — Reconstruct the original data from soft-decision information.
+The data readout process consists of the following steps:  
 
-**2. Data Readout**
+1. **Get PN Sequence and Reads** — Extract corrupted PN sequences from nanopore sequencing reads.  
+2. **PN Sequence Alignment & Indel Correction** — Align the corrupted PN sequence to the ideal PN sequence and perform insertion/deletion (indel) correction.  
+3. **LDPC Decoding** — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, , and 
+4. **Recovery of Original File** — Reconstruct the original data from the decoded bitstream.  
 
-- Get PN Sequence and Reads — Extract corrupted PN sequences from nanopore sequencing reads.
-- PN Sequence Alignment & Indel Correction — Align the corrupted PN sequence to the ideal PN sequence and perform insertion/deletion (indel) correction.
-- LDPC Decoding — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, see *Encoder Implementation with FPGA for Non-Binary LDPC Codes*, in *2012 18th Asia-Pacific Conference on Communications (APCC)*, DOI: [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230).
-- Recovery of Original File — Reconstruct the original data from the decoded bitstream.
+In addition, we provide the **encoding module**.  
+This program can encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).  
+
+
+
 
 To demonstrate the feasibility of the proposed method, we constructed 5 plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained via efficient library preparation and nanopore sequencing. All programs are developed in C and C++.
 
@@ -59,7 +66,40 @@ The following tools and dependencies are required:
 ## Overview of Repository Files
 
 ```plaintext
-PNC-LDPC_encoding/
+                                   
+Data_recovery/
+├── pLP1_recovery/
+├── pLP2_recovery/
+├── pLP3_pLP4_recovery/
+└── pLP5_recovery/
+    ├── configure/
+    │   ├── LDPC/                        # Configuration files for LDPC coding
+    │   ├── lib/                         # Supporting libraries
+    │   ├── PNseq_32000                  # Pseudo-noise sequence (length 32,000)
+    │   ├── R093.gen                     # LDPC generator matrix (R=0.93)
+    │   └── R093.pchk                    # LDPC parity-check matrix (R=0.93)
+    │
+    ├── data/
+    │   ├── data_position.txt            # Start/end positions of encoded DNA in plasmid
+    │   ├── original_codeword.txt        # 32,000-bit codeword encoded from poems.txt using binary LDPC (32000, 29760) code
+    │   ├── Plasmid_sequence.txt         # DNA plasmid sequence (42,900 bp)
+    │   ├── pLP5.fastq                   # Sample nanopore sequencing data
+    │   ├── PN_sequence.fa               # PN sequence in FASTA format
+    │   ├── poems.txt                    # Original data containing 7 Chinese poems (3,716 bytes)
+    │   └── pseudo_noise_sequence.txt    # PN sequence for locating reads & indel correction
+    │
+    └── src/
+        ├── filter_by_length.c           # Filter highly matched reads
+        ├── get_pn_seq.c                 # Map PN sequence to base sequence {0 → A, 1 → T}
+        ├── get_reads.c                  # Map corrupted PN sequence to base sequence
+        ├── indel_correction.c           # Detect & correct indel errors in raw reads
+        ├── merge_codeword.c             # Bit-wise majority voting
+        ├── parse_decoding_result.c      # Parse and process decoding results
+        ├── R093_decode                  # Implements LDPC decoding (R=0.93)
+        ├── recovery_sonnets.c           # Recover original sonnets from decoding result
+        └── to_soft_inf.c                # Convert reads into soft information for LDPC decoding
+
+PNC-LDPC_Encoding/
 ├── configure/
 │   ├── LDPC/                        # Configuration files
 │   ├── lib/                         # Supporting libraries
@@ -75,94 +115,31 @@ PNC-LDPC_encoding/
     ├── R093_decode.cpp              # LDPC decoding implementation (R=0.93)
     ├── R093_encode.cpp              # LDPC encoding implementation (R=0.93)
     └── recovery_sonnets.c           # Recover original sonnets from decoding result
-                                  
-Data_recovery/
-├── data/
-│   ├── original_codeword.txt       # 22,680-bit codeword encoded from poems.txt using non-binary LDPC (22680, 7560) code.
-│   ├── pseudo_noise_sequence.txt   # PN sequence for locating reads & indel correction
-│   ├── plasmid_sequence.txt        # DNA plasmid sequence (33,558 bp)
-│   ├── data_position.txt           # Start/end positions of encoded DNA in plasmid
-│   ├── poems.txt                   # Original data with 7 Chinese poems (945 bytes)
-│   └── pLP2.fastq                  # Sample data (5,631 sequencing reads, zipped)
-│
-└── src/
-    ├── get_pn_seq.c                # Map PN sequence to base sequence {0 → A, 1 → T}
-    ├── filter_by_length.c          # Filter highly matched reads
-    ├── get_reads.c                 # Map corrupted PN sequence to base sequence
-    ├── indel_correction.c          # Detect & correct indel errors in raw reads
-    ├── R13Decoder                  # Implements (22680, 7560) R=1/3 non-binary LDPC decoding.
-    ├── parse_decoding_result.c     # Parse and process decoding results
-    ├── recovery_poem.c             # Recover original text from decoding result
-    └── merge_codeword.c            # Bit-wise majority voting
+
 ```
 
 ## Example of usage
 
-### 1. PNC-LDPC coding scheme
+### Data Readout of pLP5
 
 **Compilation**
 
-```bash
-cd PNC-LDPC_encoding/
-export LD_LIBRARY_PATH=./configure/lib:$LD_LIBRARY_PATH
-g++ -o bin/R093_encode src/R093_encode.cpp -I configure/LDPC -L configure/lib -lldpc
-g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -lldpc
-```
-
----
-
-#### 1.1 Encoding
+To compile the individual modules:
 
 ```bash
-./bin/R093_encode data/Shakespeare_sonnets.txt results/enc_base_seq_32000nt.txt
-```
-
-**Input files:**
-
-- **Shakespeare_sonnets.txt**: original text file to be encoded.
-
-**Output files:**
-
-- **enc_base_seq_32000nt.txt**: encoded base sequence, 32000 nt.
-
----
-
-#### 1.2 Decoding
-
-```bash
-./bin/R093_decode data/softinfo_prob.txt results/decode_output.txt
-./bin/recovery_sonnets results/decode_output.txt results/recovered_shakespeare_sonnets.txt
-```
-
-**Input files:**
-
-- **softinfo_prob.txt**: soft decision probabilities.
-
-**Output files:**
-
-- **decode_output.txt**: decoded bitstream.
-- **recovered_shakespeare_sonnets.txt**: recovered Shakespeare's sonnets.
-
----
-
-### 2. Data Readout
-
-**Compilation**
-
-```bash
-cd Data_recovery/
+cd Data_recovery/pLP5_recovery/src
 gcc -o filter_by_length filter_by_length.c
 gcc -o get_pn_seq get_pn_seq.c
 gcc -o get_reads get_reads.c
 gcc -o indel_correction indel_correction.c -lm
 gcc -o MergeCodeword merge_codeword.c
 gcc -o parse_decoding_result parse_decoding_result.c -lm
-gcc -o recovery_poem recovery_poem.c
+gcc -o recovery_sonnets recovery_sonnets.c
 ```
-
 ---
 
-#### 2.1 Get PN sequence and reads
+
+#### 1. Get PN sequence and reads
 
 ```bash
 ./run_get_pn_seq_and_reads.sh
@@ -170,8 +147,8 @@ gcc -o recovery_poem recovery_poem.c
 
 **Input files:**
 
-- **Plasmid_sequence.txt**: DNA sequence of a plasmid with a total length of 33,558 base pairs (bp).
-- **pLP2.fastq**: Nanopore reads obtained from efficient library preparation.
+- **Plasmid_sequence.txt**: DNA sequence of a plasmid with a total length of 42,900 base pairs (bp).
+- **pLP5.fastq**: Nanopore reads obtained from efficient library preparation.
 
 **Output files:**
 
@@ -179,10 +156,9 @@ gcc -o recovery_poem recovery_poem.c
 - **PN_sequence.mmi**: Minimap2 generated index for the PN sequence.
 - **High_quality.fastq**: Retrieved high-quality plasmid nanopore reads.
 - **Corrupted_PN_sequence.fastq**: Corrupted PN sequences derived from the nanopore reads.
-
 ---
 
-#### 2.2 PN sequence alignment & indel correction
+#### 2. PN sequence alignment & indel correction
 
 ```bash
 ./run_alignment_and_correction.sh
@@ -199,10 +175,9 @@ gcc -o recovery_poem recovery_poem.c
 - **Minimap_align.sam**: Alignment of the PN sequence to the corrupted sequences.
 - **polished_codeword.txt**: The corrected codeword after alignment and indel correction.
 - **bit_error_befor_decoding.txt**: This file contains four columns: error count, erasure count, error rate, and erasure rate, representing bit error characteristics after indel correction.
-
 ---
 
-#### 2.3 LDPC decoding
+#### 3. LDPC decoding
 
 ```bash
 ./run_decoding.sh
@@ -217,10 +192,9 @@ gcc -o recovery_poem recovery_poem.c
 
 - **Information.txt**: Decoded information from the codeword.
 - **Check.txt**: This file is used to verify the accuracy of decoding results.
-
 ---
 
-#### 2.4  Recovery of original file
+#### 4.  Recovery of original file
 
 ```bash
 ./run_recovery.sh
@@ -233,8 +207,51 @@ gcc -o recovery_poem recovery_poem.c
 **Output files:**
 
 - **Poetry_of_recovery.txt**: Digital file recovered from the decoding result. In this example, the stored digital file contains 7 Chinese poems.
-
 ---
+
+
+### PNC-LDPC coding scheme
+
+**Compilation**
+
+```bash
+cd PNC-LDPC_Encoding/
+export LD_LIBRARY_PATH=./configure/lib:$LD_LIBRARY_PATH
+g++ -o bin/R093_encode src/R093_encode.cpp -I configure/LDPC -L configure/lib -lldpc
+g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -lldpc
+```
+
+#### Encoding
+
+```bash
+./bin/R093_encode data/Shakespeare_sonnets.txt results/enc_base_seq_32000nt.txt
+```
+
+**Input files:**
+
+- **Shakespeare_sonnets.txt**: original text file to be encoded.
+
+**Output files:**
+
+- **enc_base_seq_32000nt.txt**: encoded base sequence, 32000 nt.
+
+#### Decoding
+
+```bash
+./bin/R093_decode data/softinfo_prob.txt results/decode_output.txt
+./bin/recovery_sonnets results/decode_output.txt results/recovered_shakespeare_sonnets.txt
+```
+
+**Input files:**
+
+- **softinfo_prob.txt**: soft decision probabilities.
+
+**Output files:**
+
+- **decode_output.txt**: decoded bitstream.
+- **recovered_shakespeare_sonnets.txt**: recovered Shakespeare's sonnets.
+
+
 
 ## License
 
