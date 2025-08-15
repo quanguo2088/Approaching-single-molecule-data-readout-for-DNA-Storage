@@ -24,11 +24,9 @@ Synthetic DNA is a promising medium for long-term data storage. Nanopore sequenc
 
 Here we provide the readout programs for five plasmids (**pLP1–pLP5**):  
 
-- **pLP1** and **pLP2** — Non-binary LDPC code with rate **R = 1/3** 
-(coding procedures details in *Encoder Implementation with FPGA for Non-Binary LDPC Codes* [10.1109/APCC.2012.6388230](https://doi.org/10.1109/APCC.2012.6388230))
-- **pLP3** and **pLP4** — Non-binary LDPC code with rate **R = 1/2** 
-(coding procedures details in *Non-binary LDPC codes defined over the general linear group: Finite length design and practical implementation issues* [10.1109/VETECS.2009.5073713](https://doi.org/10.1109/VETECS.2009.5073713).)
-- **pLP5** — Binary LDPC code with rate **R = 0.93**  
+- **pLP1** and **pLP2** — encoded with non-binary LDPC code (R = 1/3) and PN sequences 
+- **pLP3** and **pLP4** — encoded with non-binary LDPC code (R = 1/2) and PN sequences
+- **pLP5** — encoded with binary LDPC code (R = 0.93) and PN sequences  
 
 The data readout process consists of the following steps:  
 
