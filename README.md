@@ -35,10 +35,8 @@ The data readout process consists of the following steps:
 3. **LDPC Decoding** — Apply non-binary LDPC decoding. For a detailed explanation of the coding procedures, , and 
 4. **Recovery of Original File** — Reconstruct the original data from the decoded bitstream.  
 
-In addition, we provide the **encoding module**.  
+In addition, we provide the encoding module.
 This program can encode original data (3,716 bytes) to construct a 43-kb plasmid, using a binary LDPC code with a code rate of 0.93 (by MacKay, D. J. C., available at [http://www.inference.org.uk/mackay/codes/data.html#l142](http://www.inference.org.uk/mackay/codes/data.html#l142)).  
-
-
 
 
 To demonstrate the feasibility of the proposed method, we constructed 5 plasmids with lengths ranging from 33 to 43 kb and 28 plasmids with lengths ranging from 6 to 8 kb. We provide the raw data (poems in TXT format), the encoded DNA sequences, and sequencing reads obtained via efficient library preparation and nanopore sequencing. All programs are developed in C and C++.

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LD_LIBRARY_PATH=./configure/lib:$LD_LIBRARY_PATH
+
 # Compile the R093_encode program
 # - Output binary to bin/R093_encode
 # - Source code: src/R093_encode.cpp and all .cpp files in configure/LDPC
