@@ -15,9 +15,7 @@
       - [2. PN sequence alignment \& indel correction](#2-pn-sequence-alignment--indel-correction)
       - [3. LDPC decoding](#3-ldpc-decoding)
       - [4.  Recovery of original file](#4--recovery-of-original-file)
-    - [PNC-LDPC coding scheme](#pnc-ldpc-coding-scheme)
-      - [Encoding](#encoding)
-      - [Decoding](#decoding)
+    - [PNC-LDPC encoding scheme](#pnc-ldpc-encoding-scheme)
   - [License](#license)
 
 ## Overview
@@ -109,12 +107,9 @@ PNC-LDPC_Encoding/
 │
 ├── data/
 │   ├── Shakespeare_sonnets.txt      # Source text data (Shakespeare's Sonnets)
-│   └── softinfo_prob.txt            # Soft information probabilities for decoding
 │
 └── src/
-    ├── R093_decode.cpp              # LDPC decoding implementation (R=0.93)
-    ├── R093_encode.cpp              # LDPC encoding implementation (R=0.93)
-    └── recovery_sonnets.c           # Recover original sonnets from decoding result
+    └──  R093_encode.cpp              # LDPC encoding implementation (R=0.93)
 
 ```
 
@@ -210,7 +205,7 @@ gcc -o recovery_sonnets recovery_sonnets.c
 ---
 
 
-### PNC-LDPC coding scheme
+### PNC-LDPC encoding scheme
 
 **Compilation**
 
@@ -218,10 +213,9 @@ gcc -o recovery_sonnets recovery_sonnets.c
 cd PNC-LDPC_Encoding/
 export LD_LIBRARY_PATH=./configure/lib:$LD_LIBRARY_PATH
 g++ -o bin/R093_encode src/R093_encode.cpp -I configure/LDPC -L configure/lib -lldpc
-g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -lldpc
 ```
 
-#### Encoding
+**Encoding**
 
 ```bash
 ./bin/R093_encode data/Shakespeare_sonnets.txt results/enc_base_seq_32000nt.txt
@@ -235,23 +229,7 @@ g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -l
 
 - **enc_base_seq_32000nt.txt**: encoded base sequence, 32000 nt.
 
-#### Decoding
-
-```bash
-./bin/R093_decode data/softinfo_prob.txt results/decode_output.txt
-./bin/recovery_sonnets results/decode_output.txt results/recovered_shakespeare_sonnets.txt
-```
-
-**Input files:**
-
-- **softinfo_prob.txt**: soft decision probabilities.
-
-**Output files:**
-
-- **decode_output.txt**: decoded bitstream.
-- **recovered_shakespeare_sonnets.txt**: recovered Shakespeare's sonnets.
-
-
+---
 
 ## License
 
