@@ -61,7 +61,7 @@ The following tools and dependencies are required:
 ## Overview of Repository Files
 
 ```plaintext
-PNC-LDPC_Encoding/
+PNC-LDPC_encoding/
 ├── configure/
 │   ├── LDPC/                        # Configuration files
 │   ├── lib/                         # Supporting libraries
@@ -105,7 +105,7 @@ Data_recovery/
 **Compilation**
 
 ```bash
-cd PNC-LDPC_Encoding/
+cd PNC-LDPC_encoding/
 export LD_LIBRARY_PATH=./configure/lib:$LD_LIBRARY_PATH
 g++ -o bin/R093_encode src/R093_encode.cpp -I configure/LDPC -L configure/lib -lldpc
 g++ -o bin/R093_decode src/R093_decode.cpp -I configure/LDPC -L configure/lib -lldpc
